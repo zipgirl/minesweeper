@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#160e16">
+  <meta name="description" content="Una partida de buscaminas con un toque oscuro y romántico.">
+  <meta property="og:title" content="BuscaMinas — zipgirl">
+  <meta property="og:description" content="Un clásico, con otra estética. ¿Te animás a despejar el tablero?">
+  <meta property="og:type" content="website">
+  <title>BuscaMinas — zipgirl</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./game.js" defer></script>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <main class="page-shell">
+    <header class="topbar">
+      <a class="back-link" href="https://zipgirl.github.io/projects/">← volver a proyectos</a>
+      <a class="wordmark" href="https://zipgirl.github.io/" aria-label="Ir al sitio de zipgirl">zipgirl<span>✳</span></a>
+      <span class="edition">JUEGO DE LÓGICA <i>／</i> 001</span>
+    </header>
+
+    <section class="intro" aria-labelledby="game-title">
+      <p class="eyebrow"><span></span> una pequeña obsesión digital</p>
+      <h1 id="game-title">Busca<em>Minas.</em></h1>
+      <p class="intro-copy">Paciencia, intuición y un poquito de suerte.<br>Un clásico para despejar la cabeza.</p>
+    </section>
+
+    <section class="game-panel" aria-label="Juego de buscaminas">
+      <div class="settings-row">
+        <div class="field-group">
+          <label for="difficulty">Dificultad</label>
+          <select id="difficulty">
+            <option value="easy">Tranquila · 15 × 15</option>
+            <option value="medium">Intermedia · 20 × 20</option>
+            <option value="hard">Intensa · 25 × 25</option>
+          </select>
+        </div>
+        <div class="field-group player-field">
+          <label for="player-name">Tu nombre <span>(opcional)</span></label>
+          <input id="player-name" type="text" maxlength="18" placeholder="¿Cómo te llamás?">
+        </div>
+      </div>
+
+      <div class="status-bar">
+        <div class="status-item"><span class="status-icon" aria-hidden="true">✹</span><div><small>MINAS</small><strong id="mine-count">022</strong></div></div>
+        <div class="status-item timer-item"><span class="status-icon" aria-hidden="true">◷</span><div><small>TIEMPO</small><strong id="timer">00:00</strong></div></div>
+        <button class="restart-button" id="restart" type="button" aria-label="Empezar una partida nueva" title="Nueva partida"><span aria-hidden="true">↻</span></button>
+      </div>
+
+      <div class="board-heading"><span id="board-caption">TABLERO · 15 × 15</span><span id="mode-hint">click: descubrir · click derecho: bandera</span></div>
+      <div class="board-viewport">
+        <div id="board" class="board" role="grid" aria-label="Tablero de buscaminas"></div>
+      </div>
+
+      <div class="game-tools">
+        <button id="flag-mode" class="tool-button" type="button" aria-pressed="false"><span aria-hidden="true">⚑</span> Modo bandera <kbd>F</kbd></button>
+        <p id="game-message" class="game-message" role="status" aria-live="polite">Elegí una casilla para empezar. Tu primera jugada siempre es segura.</p>
+      </div>
+    </section>
+
+    <section class="how-to" aria-label="Cómo jugar">
+      <span class="how-title">un recordatorio</span>
+      <p><b>Descubrí</b> las casillas sin minas. Los números indican cuántas bombas hay alrededor. <b>Marcá</b> las sospechosas con una bandera y despejá todo el tablero para ganar.</p>
+      <div class="legend"><span><i class="legend-number">1</i> pista</span><span><i class="legend-flag">⚑</i> posible mina</span><span><i class="legend-mine">✹</i> mina</span></div>
+    </section>
+
+    <footer class="footer"><span>UN CLÁSICO, CON OTRA ESTÉTICA.</span><span>HECHO CON <b>♥</b> POR ZIPGIRL</span></footer>
+  </main>
+  <canvas id="celebration" aria-hidden="true"></canvas>
+</body>
+</html>
