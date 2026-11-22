@@ -5,14 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#160e16">
   <meta name="description" content="Una partida de buscaminas con un toque oscuro y romántico.">
-  <meta property="og:title" content="BuscaMinas — zipgirl">
+  <meta property="og:title" content="BuscaMinas — ZipGirl">
   <meta property="og:description" content="Un clásico, con otra estética. ¿Te animás a despejar el tablero?">
   <meta property="og:type" content="website">
-  <title>BuscaMinas — zipgirl</title>
+  <title>BuscaMinas — ZipGirl</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+  <script>try{if(localStorage.getItem("minesweeper-theme")==="light")document.documentElement.dataset.theme="light";}catch{}</script>
   <link rel="stylesheet" href="./styles.css">
   <script src="./game.js" defer></script>
 </head>
@@ -21,8 +22,16 @@
   <main class="page-shell">
     <header class="topbar">
       <a class="back-link" href="https://zipgirl.github.io/projects/">← volver a proyectos</a>
-      <a class="wordmark" href="https://zipgirl.github.io/" aria-label="Ir al sitio de zipgirl">zipgirl<span>✳</span></a>
-      <span class="edition">JUEGO DE LÓGICA <i>／</i> 001</span>
+      <a class="brand" href="https://zipgirl.github.io/" aria-label="Ir al sitio de ZipGirl">
+        <picture>
+          <img class="logo-dark" src="./images/zipgirl-dark.webp" alt="ZipGirl">
+          <img class="logo-light" src="./images/zipgirl-light.webp" alt="ZipGirl">
+        </picture>
+      </a>
+      <div class="header-tools">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar a tema claro">☼</button>
+        <span class="edition">JUEGO DE LÓGICA <i>／</i> 001</span>
+      </div>
     </header>
 
     <section class="intro" aria-labelledby="game-title">
@@ -70,8 +79,25 @@
       <div class="legend"><span><i class="legend-number">1</i> pista</span><span><i class="legend-flag">⚑</i> posible mina</span><span><i class="legend-mine">✹</i> mina</span></div>
     </section>
 
-    <footer class="footer"><span>UN CLÁSICO, CON OTRA ESTÉTICA.</span><span>HECHO CON <b>♥</b> POR ZIPGIRL</span></footer>
+    <footer class="footer"><span>UN CLÁSICO, CON OTRA ESTÉTICA.</span><span>HECHO CON <b>♥</b> POR ZipGirl</span></footer>
   </main>
   <canvas id="celebration" aria-hidden="true"></canvas>
+  <script>
+    (() => {
+      const button = document.querySelector("#theme-toggle");
+      if (!button) return;
+      const applyTheme = (theme) => {
+        document.documentElement.dataset.theme = theme;
+        localStorage.setItem("minesweeper-theme", theme);
+        const light = theme === "light";
+        button.textContent = light ? "☾" : "☼";
+        button.setAttribute("aria-label", light ? "Cambiar a tema oscuro" : "Cambiar a tema claro");
+      };
+      applyTheme(document.documentElement.dataset.theme === "light" ? "light" : "dark");
+      button.addEventListener("click", () => {
+        applyTheme(document.documentElement.dataset.theme === "light" ? "dark" : "light");
+      });
+    })();
+  </script>
 </body>
 </html>
