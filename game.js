@@ -148,8 +148,8 @@
   function revealArea(startIndex) {
     const queue = [startIndex];
     const visited = new Set(queue);
-    while (queue.length) {
-      const index = queue.shift();
+    for (let cursor = 0; cursor < queue.length; cursor++) {
+      const index = queue[cursor];
       const cell = cells[index];
       if (cell.revealed || cell.flagged || cell.mine) continue;
       cell.revealed = true;
